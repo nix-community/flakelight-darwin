@@ -38,7 +38,7 @@ in {
       checks = foldl recursiveUpdate { } (mapAttrsToList (n: v: {
         # Wrapping the drv is needed as computing its name is expensive
         # If not wrapped, it slows down `nix flake show` significantly
-        ${v.config.nixpkgs.system}."darwin-${n}" =
+        ${v.pkgs.stdenv.hostPlatform.system}."darwin-${n}" =
           v.pkgs.runCommand "check-darwin-${n}" { }
           "echo ${v.config.system.build.toplevel} > $out";
       }) configs);
