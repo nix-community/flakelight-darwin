@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  worfklow_dispatch:
+
+jobs:
+  run_check:
+    name: Test nix flake
+    runs-on: macos-latest
+    steps:
+      - name: Nix Flake Check Action
+        uses: spotdemo4/nix-flake-check-action@v1.0.0
+          
